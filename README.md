@@ -2,8 +2,6 @@
 
 Set up MIDI communication between two computers over a local network to trigger video playback from the stage PC to the FOH laptop.
 
----
-
 ## 🧾 Overview
 
 ### 🎚️ Physical Setup
@@ -17,13 +15,9 @@ Set up MIDI communication between two computers over a local network to trigger 
 📶 FOH Laptop is connected via **Wi-Fi** to the router.
 🔌 Raspberry and Mixer are **wired** to the router.
 
----
-
 ## 🍓 Raspberry Pi Setup
 
 Using a **Raspberry Pi 3 Model B**, but any Linux-compatible device will work.
-
----
 
 ### 💽 OS Installation
 
@@ -37,8 +31,6 @@ Using a **Raspberry Pi 3 Model B**, but any Linux-compatible device will work.
    * **Enable SSH**
 
 > 💡 These options can be set via Raspberry Pi Imager before writing the SD card.
-
----
 
 ### 🛠️ Software Installation
 
@@ -80,8 +72,6 @@ sudo cp ./src/rtpmidid /usr/local/bin/
 rtpmidid --port 5004 --name StageSession &
 ```
 
----
-
 ### 🎹 Connect MIDI Controller (Cymatic, AKAI, etc.)
 
 1. Plug your MIDI device into the Raspberry
@@ -100,13 +90,9 @@ aconnect <client_id>:0 128:0
 > 🎯 `128:0` is usually the `rtpmidid` port.
 > Use the output of `aconnect -l` to find your actual client number.
 
----
-
 ## 💻 FOH Laptop Setup (Windows)
 
 This computer receives the MIDI signal wirelessly and controls video playback.
-
----
 
 ### ⚙️ Configuration
 
@@ -119,19 +105,13 @@ This computer receives the MIDI signal wirelessly and controls video playback.
 * ✅ Check “Enabled”
 * 🔗 Select `StageSession` under “Directory” and click **Connect**
 
-
 <img width="611" height="395" alt="rtpmidi-setup" src="https://github.com/user-attachments/assets/37b7c8da-f961-4d37-ad15-df3b4e4bc17b" />
 
-
 > 📈 You should see latency metrics once connected.
-
----
 
 ## 🔁 Run on Boot (Raspberry Pi)
 
 Ensure the MIDI service starts automatically at boot.
-
----
 
 ### 1️⃣ Create `rtpmidid` systemd service
 
@@ -153,8 +133,6 @@ WorkingDirectory=/home/<your-username>
 [Install]
 WantedBy=multi-user.target
 ```
-
----
 
 ### 2️⃣ Auto-connect MIDI ports with script
 
@@ -192,8 +170,6 @@ Make it executable:
 sudo chmod +x /usr/local/bin/connect-midi-ports.sh
 ```
 
----
-
 ### 3️⃣ Create service for MIDI connection
 
 ```bash
@@ -214,8 +190,6 @@ Type=oneshot
 WantedBy=multi-user.target
 ```
 
----
-
 ### 4️⃣ Enable both services
 
 ```bash
@@ -233,13 +207,9 @@ sudo systemctl start rtpmidid.service
 sudo systemctl start rtpmidi-connect.service
 ```
 
----
-
 ## 🔌 Hotplugging Support (Optional)
 
 Ensure that if you plug in the MIDI controller **after boot**, it still gets connected.
-
----
 
 ### 🧩 1. Create a udev rule
 
@@ -253,16 +223,12 @@ SUBSYSTEM=="sound", ACTION=="add", KERNEL=="midiC*", RUN+="/usr/local/bin/connec
 
 > ⏱️ The `sleep 5` in the script ensures ALSA is ready when hotplugging.
 
----
-
 ### ♻️ 2. Reload udev rules
 
 ```bash
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
-
----
 
 ## 📽️ Controlling the Video
 
@@ -272,8 +238,6 @@ You can verify the connection in your **DAW** (e.g., Ableton Live, Reaper) or an
 
 * The MIDI input should appear with the **session name** (e.g. `nicdenny`, `StageSession`, etc.)
 * You can monitor incoming MIDI messages to ensure everything is working correctly.
-
----
 
 ### 🎛️ What Can You Control?
 
@@ -288,8 +252,6 @@ Some common tools include:
 * 📺 **OBS Studio** – Great for switching scenes or controlling overlays
 
 > 💡 MIDI messages (like notes or CCs) can be mapped inside each software to control specific actions (e.g. play video, change scene, apply effect).
-
----
 
 ### 🧩 Controlling OBS via MIDI (Coming Up)
 
