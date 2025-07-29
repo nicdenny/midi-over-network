@@ -119,6 +119,10 @@ This computer receives the MIDI signal wirelessly and controls video playback.
 * ✅ Check “Enabled”
 * 🔗 Select `StageSession` under “Directory” and click **Connect**
 
+
+<img width="611" height="395" alt="rtpmidi-setup" src="https://github.com/user-attachments/assets/37b7c8da-f961-4d37-ad15-df3b4e4bc17b" />
+
+
 > 📈 You should see latency metrics once connected.
 
 ---
