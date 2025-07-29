@@ -261,3 +261,36 @@ SUBSYSTEM=="sound", ACTION=="add", KERNEL=="midiC*", RUN+="/usr/local/bin/connec
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
+
+---
+
+## 📽️ Controlling the Video
+
+At this point, your FOH laptop should be **receiving MIDI over the network**, as if the controller were physically connected to it.
+
+You can verify the connection in your **DAW** (e.g., Ableton Live, Reaper) or any **MIDI-compatible software**:
+
+* The MIDI input should appear with the **session name** (e.g. `nicdenny`, `StageSession`, etc.)
+* You can monitor incoming MIDI messages to ensure everything is working correctly.
+
+---
+
+### 🎛️ What Can You Control?
+
+Once MIDI is flowing, you can use it to trigger video playback, switch scenes, or activate effects — depending on the software you use.
+
+Some common tools include:
+
+* 🎞️ **Resolume Arena** – Trigger video clips and effects via MIDI
+* 🎭 **QLab** – Cue-based control for multimedia and theater
+* 🎬 **VDMX** – Real-time visual performance software
+* 🧰 **Custom applications/scripts** – For tailored show control
+* 📺 **OBS Studio** – Great for switching scenes or controlling overlays
+
+> 💡 MIDI messages (like notes or CCs) can be mapped inside each software to control specific actions (e.g. play video, change scene, apply effect).
+
+---
+
+### 🧩 Controlling OBS via MIDI (Coming Up)
+
+I’ll explain how to use **OBS Studio** with a **MIDI plugin** to switch scenes, start/stop video sources, and control your stream or projection using MIDI messages from the stage.
