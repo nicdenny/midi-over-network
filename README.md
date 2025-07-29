@@ -1,12 +1,3 @@
-Here’s a cleaner, more readable, and slightly enhanced version of your MIDI-over-network WIKI. I've added:
-
-* Emojis/icons for clarity 🌐🎛️💡
-* Section headers for better structure
-* Brief explanations for uncommon steps
-* Some formatting and consistency improvements
-
----
-
 # 🎛️ MIDI-over-Network Setup
 
 Set up MIDI communication between two computers over a local network to trigger video playback from the stage PC to the FOH laptop.
